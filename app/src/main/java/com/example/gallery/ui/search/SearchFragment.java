@@ -5,9 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -16,16 +14,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gallery.R;
-import com.example.gallery.adapter.ImageAdapter;
-import com.example.gallery.model.Photo;
+import com.example.gallery.adapter.PhotoAdapter;
 import com.example.gallery.model.Photos;
-
-import java.util.List;
 
 public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
-    private ImageAdapter adapter;
+    private PhotoAdapter adapter;
     private RecyclerView recyclerView;
     private boolean isInitState = false;
 
@@ -67,7 +62,7 @@ public class SearchFragment extends Fragment {
     }
 
     private void initRecyclerView() {
-        adapter = new ImageAdapter(getContext(),searchViewModel.getPhotoLiveData().getValue().getPhoto());
+        adapter = new PhotoAdapter(getContext(),searchViewModel.getPhotoLiveData().getValue().getPhoto());
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setAdapter(adapter);
         recyclerView.setVisibility(View.VISIBLE);

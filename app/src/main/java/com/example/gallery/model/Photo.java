@@ -1,11 +1,19 @@
 
 package com.example.gallery.model;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "photos_table")
 public class Photo {
 
+    @NonNull
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     private String id;
@@ -139,4 +147,15 @@ public class Photo {
         this.widthS = widthS;
     }
 
+    public static DiffUtil.ItemCallback<Photo> DIFF_CALLBACK = new DiffUtil.ItemCallback<Photo>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Photo oldItem, @NonNull Photo newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Photo oldItem, @NonNull Photo newItem) {
+            return oldItem.getUrlS().equals(newItem.getUrlS());
+        }
+    };
 }

@@ -10,7 +10,7 @@ import com.example.gallery.model.Data;
 import com.example.gallery.model.Example;
 import com.example.gallery.model.Photo;
 import com.example.gallery.model.Photos;
-import com.example.gallery.repository.FlickrApi;
+import com.example.gallery.repository.network.api.FlickrApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class SearchViewModel extends ViewModel {
     }
 
     private void setPhotos(){
-        Call<Example> exampleCall = FlickrApi.getService().getPostList();
+        Call<Example> exampleCall = FlickrApi.getService().getPostList(2);
         exampleCall.enqueue(new Callback<Example>() {
             @Override
             public void onResponse(Call<Example> call, Response<Example> response) {

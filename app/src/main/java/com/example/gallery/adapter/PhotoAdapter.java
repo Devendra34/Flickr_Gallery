@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.gallery.OpenedImage;
 import com.example.gallery.R;
 import com.example.gallery.model.Photo;
@@ -17,12 +18,12 @@ import com.example.gallery.view_holders.ImageViewHolder;
 
 import java.util.List;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
+public class PhotoAdapter extends RecyclerView.Adapter<ImageViewHolder> {
 
     private Context context;
     private List<Photo> photos;
 
-    public ImageAdapter(Context context, List<Photo> photos) {
+    public PhotoAdapter(Context context, List<Photo> photos) {
         this.context = context;
         this.photos = photos;
     }
@@ -45,6 +46,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
         holder.titleTV.setText(title);
         Glide.with(context)
                 .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.DATA)
                 .centerCrop()
                 .into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
