@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -13,10 +12,20 @@
         android:iconifiedByDefault="false"
         android:queryHint="@string/query_hint"
         />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar"
+        android:layout_centerInParent="true"
+        android:elevation="5dp"
+        />
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="5dp"
+        android:layout_below="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:id="@+id/search_recycler_view"
         />
-</LinearLayout>
+</RelativeLayout>

@@ -8,22 +8,21 @@ import androidx.lifecycle.ViewModel;
 import androidx.paging.PagedList;
 
 import com.example.gallery.model.Photo;
-import com.example.gallery.model.Photos;
 import com.example.gallery.model.NetworkState;
 import com.example.gallery.repository.PhotoRepository;
 
+import io.reactivex.Observable;
+
 public class GalleryViewModel extends ViewModel {
 
-    private MutableLiveData<Photos> mPhotos;
+
     private static final String TAG = "debug";
     private PhotoRepository photoRepository;
-
     public GalleryViewModel() {
-        mPhotos = new MutableLiveData<>();
     }
 
-    public void setPhotoRepository(Context context) {
-        photoRepository = PhotoRepository.getInstance(context);
+    public void setPhotoRepository(Context context, LiveData<String> observable) {
+        photoRepository = PhotoRepository.getInstance(context,observable);
     }
 
     public LiveData<PagedList<Photo>> getPhotoesNew() {
